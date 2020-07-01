@@ -111,9 +111,7 @@ print('\nЗалез -> ',sunset, '\n')
 
 page = urllib.request.urlopen(quote_page)
 soup = BeautifulSoup(page, 'html.parser')
-#soup.get_text()
-big_img_news = soup.find('div', attrs={'class': 'big-img-news'})#.contents
-#print(soup.get_text())
+big_img_news = soup.find('div', attrs={'class': 'img-section'})
 endText = big_img_news.get_text()
 formattedText = endText.replace("\n", " ")
 
@@ -122,4 +120,5 @@ formTxt = formattedText.split()
 firstIndex = formTxt.index('|') + 3
 formTxt.insert(firstIndex, "\n")
 outputNews = " ".join(str(x) for x in formTxt)
+
 print(outputNews)
