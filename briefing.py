@@ -6,7 +6,7 @@ import http.client
 import requests
 import json
 import datetime
-
+#Air quality code: 7d1a26534b7cf67bc0d91d917b150bee41f7e384
 
 #Covid-19 Bulgaria tracker
 covid_url = "https://covid-19-coronavirus-statistics.p.rapidapi.com/v1/total"
@@ -23,9 +23,19 @@ covid_data = json.loads(covid_response.text)
 
 quote_page = 'https://dir.bg'
 
+#Weather info
 response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Sofia&lang=bg&units=metric&APPID=3a50373a38f976e9ff0d235adeffec15")
 
 weather_data = json.loads(response.text)
+
+#Air quality
+response_air = requests.get("http://api.waqi.info/feed/sofia/?token=7d1a26534b7cf67bc0d91d917b150bee41f7e384")
+air_data = json.loads(response_air.text)
+
+
+#Exchange rate
+response_rate = requests.get("https://api.exchangeratesapi.io/latest?base=EUR")
+rate_data = json.loads(response_rate.text)
 
 
 #response_traffic = requests.get("https://traffic.ls.hereapi.com/traffic/6.3/incidents.json?apiKey=BibhE_EZKFnQE5z8U6rRitkT_bzo4uSfP_G0SPGxTBk&bbox=42.697,23.324;42.650,23.633&criticality=minor")
@@ -52,7 +62,16 @@ def degToCompass(num):
     return arr[(val % 16)]
 
 
+#Exchange rates
+bgn = rate_data['rates']['BGN']
+usd = rate_data['rates']['USD']
+gbp = rate_data['rates']['GBP']
 
+
+#Air quality index
+aqi = air_data['data']['aqi']
+
+#Temperature
 temp = weather_data['main']['temp']
 
 #Wind Speed
@@ -112,10 +131,13 @@ print('\nВлажност -> ',humidity, '%')
 print('\nАтмосферно налягане -> ',pressure, 'hPa')
 print('\nВидимост -> ',visibility, 'метра')
 print('\nИзгрев -> ',sunrise)
-print('\nЗалез -> ',sunset, '\n')
+print('\nЗалез -> ',sunset)
+print('\nКачество на въздуха -> ',aqi)
+print('\nEUR към BGN -> ',bgn)
+print('\nEUR към USD -> ',usd)
+print('\nEUR към GBP -> ',gbp)
 
-
-
+#Formatting news
 page = urllib.request.urlopen(quote_page)
 soup = BeautifulSoup(page, 'html.parser')
 big_img_news = soup.find('div', attrs={'class': 'img-section'})
