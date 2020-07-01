@@ -26,16 +26,23 @@ quote_page = 'https://dir.bg'
 response = requests.get("http://api.openweathermap.org/data/2.5/weather?q=Sofia&lang=bg&units=metric&APPID=3a50373a38f976e9ff0d235adeffec15")
 
 weather_data = json.loads(response.text)
+
+
 #response_traffic = requests.get("https://traffic.ls.hereapi.com/traffic/6.3/incidents.json?apiKey=BibhE_EZKFnQE5z8U6rRitkT_bzo4uSfP_G0SPGxTBk&bbox=42.697,23.324;42.650,23.633&criticality=minor")
 #traffic_data = json.loads(response_traffic.text)
 #print(traffic_data)
 
 #Bing maps
-response_traffic = requests.get("http://dev.virtualearth.net/REST/v1/Traffic/Incidents/42.70,23.33,-42.7,-156.67/severity=2,3,4&type=1,2,10&key=Atz5fm_pJnaBGXBLLnqpz7EATHVKR-iAstXVpeclGg-Phk-bhe99Lh1Llpts_HOf")
+#response_traffic = requests.get("http://dev.virtualearth.net/REST/v1/Traffic/Incidents/42.70,23.33,-42.7,-156.67/severity=2,3,4&type=1,2,10&key=Atz5fm_pJnaBGXBLLnqpz7EATHVKR-iAstXVpeclGg-Phk-bhe99Lh1Llpts_HOf")
 #response_traffic = requests.get("http://dev.virtualearth.net/REST/V1/Traffic/Incidents/37,-105,45,-94/true?t=9,2&s=2,3&o=xml&key=Atz5fm_pJnaBGXBLLnqpz7EATHVKR-iAstXVpeclGg-Phk-bhe99Lh1Llpts_HOf")
 #traffic_data_bing = json.loads(response_traffic.text)
 #print(traffic_data_bing)
 #print(response_traffic.text)
+
+#HERE api
+#response_traffic = requests.get("https://traffic.ls.hereapi.com/traffic/6.2/flow.xml?quadkey=12020330&apiKey=BibhE_EZKFnQE5z8U6rRitkT_bzo4uSfP_G0SPGxTBk")
+#print(response_traffic.text)
+
 
 
 #Wind Direction Converter
